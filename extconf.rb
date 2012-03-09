@@ -8,8 +8,5 @@ use_mecab_config = enable_config('mecab-config')
 }
 
 $CFLAGS += ' ' + `#{mecab_config} --cflags`.chomp
-if RUBY_PLATFORM =~ /darwin/
-  $LDFLAGS = '-L/opt/local/lib'
-end
 
 have_header('mecab.h') && create_makefile('MeCab')
