@@ -7,13 +7,7 @@ use_mecab_config = enable_config('mecab-config')
   have_library(lib)
 }
 
-$CFLAGS += ' ' + `#{mecab_config} --cflags`.chomp
-
-case RUBY_PLATFORM
-when /darwin/
-  $LDFLAGS = '-L/opt/local/lib'
-when /linux/
-  $LDFLAGS = '-L/usr/local/lib'
-end
+$CFLAGS  += ' '   + `#{mecab_config} --cflags`.chomp
+$LDFLAGS += ' -L' + `#{mecab_config} --libs-only-L`.chomp
 
 have_header('mecab.h') && create_makefile('MeCab')
