@@ -9,6 +9,6 @@ use_mecab_config = enable_config('mecab-config')
 
 $CFLAGS  += ' '   + `#{mecab_config} --cflags`.chomp
 $LDFLAGS += ' -L' + `#{mecab_config} --libs-only-L`.chomp
-$defs << `#{mecab-config} --cflags`.chomp
+$defs << `#{mecab_config} --cflags`.chomp
 
 have_header('mecab.h') && create_makefile('MeCab')
